@@ -1,0 +1,351 @@
+
+body,
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    height: 100%;
+    font-family: "Amatic SC", sans-serif !important;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("./images/burger_slide.png");
+    height: 700px;
+    min-height: 75%;
+  }
+
+  .product-name {
+    font-size: 36px;
+  }
+  
+  .align-center {
+    text-align: center;
+  }
+
+  .modal {
+    opacity: 50%;
+  }
+  
+  .modal-form {
+    margin-top: 40px;
+  }
+  
+  .buy-button-circle {
+      background-color: #f00;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      font-size: 29px;
+      margin-top: 5px;
+      margin-right: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  
+    .buy-button-circle-disabled {
+      background-color: #dddddd;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      font-size: 29px;
+      margin-top: 5px;
+      margin-right: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      pointer-events: none;
+    }
+  
+    .finish-request-container {
+      background-color: #f00;
+      border: none;
+      color: #ffffff;
+      display: flex;
+      height: 100%;
+      margin-top: 30px;
+      margin-left: 100px;
+      margin-right: 100px;
+      padding: 5px 0 5px 0;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  
+    .finish-request-content {
+      flex-basis: 50%;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  
+    .product-name {
+      font-size: 36px;
+    }
+  
+    .description {
+      font-size: 28px;
+    }
+  
+    .total-value {
+      font-size: 30px;
+    }
+  
+    .top, .bottom{
+      position:fixed;
+      width:100%;
+      z-index:1
+    }
+  
+    .top{
+      top:0
+    }
+  
+    .bottom{
+      bottom:0
+    }
+  
+    .simple-padding{
+      padding:8px 16px!important
+    }
+    
+    .large-padding {
+      padding:12px 24px!important
+    }
+  
+    .color-back {
+      color:#fff!important;
+      background-color:#000!important
+    }
+  
+    .color-white {
+      color:#000!important;
+      background-color:#fff!important
+    }
+  
+    .block {
+      display:block;width:100%
+    }
+  
+    .container-relative {
+      position:relative
+    }
+  
+    .grayscale-min {
+      filter:grayscale(50%)
+    }
+  
+    .bottom-left {
+      position:absolute;
+      left:0;
+      bottom:0
+    }
+  
+    .aligin-center {
+      text-align:center!important
+    }
+  
+    .display-none {
+      display:none!important
+    }
+  
+    .display-middle {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      -ms-transform:translate(-50%,-50%)
+    }
+  
+    .tag {
+      background-color:#000;
+      color:#fff;
+      display:inline-block;
+      padding-left:8px;
+      padding-right:8px;
+      text-align:center;
+    }
+  
+    .tag-font {
+      font-size: 22px;
+    }
+  
+    .text-white {
+      color:#fff!important;
+      font-size: 90px;
+    }
+  
+    .div-pedido-container {
+      color:#000!important;
+      background-color:#fdf5e6!important;
+      filter:grayscale(75%);
+      font-size:18px!important
+    }
+  
+    .padding-64{
+      padding-top:64px!important;
+      padding-bottom:64px!important
+    }
+  
+    .font-wide{
+      letter-spacing:4px;
+      font-size: 32px;
+    }
+  
+    .padding-32 {
+      padding-top:32px!important;
+      padding-bottom:32px!important
+    }
+  
+    .padding-48 {
+      padding-top:32px!important;
+      padding-bottom:32px!important
+    }
+  
+    .ligth-gray {
+      color:#000!important;
+      background-color:#f1f1f1!important
+    }
+  
+    .font-footer {
+      font-size:28px!important
+    }
+  
+    .popup{
+      background: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .popup-content{
+      width: 500px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      position: relative;
+    }
+  
+    .popup-buttons{
+      background-color: #f00;
+      color: #ffffff;
+      display: inline-block;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      width: 100%;
+      height: 40px;
+    }
+  
+    .confirmation-popup{
+      background: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .confirmation-popup-content{
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      position: relative;
+    }
+  
+    .div1-form {
+      margin-top: 10px;
+    }
+  
+    .div2-form {
+      margin-top: 10px;
+    }
+  
+    .label-form {
+      font-size: 25px;
+      margin-right: 20px;
+    }
+  
+    .input-form {
+      width: 100%;
+      height: 50px;
+    }
+  
+    .container-map {
+      margin-top: 60px;
+    }
+  
+    .location-label {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  
+    .menu-links {
+      font-size: 30px;
+    }
+
+
+
+
+/* cyrillic */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/amaticsc/v16/TUZyzwprpvBS1izr_vOEDuSfU5cP1V3r.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/amaticsc/v16/TUZyzwprpvBS1izr_vOECOSfU5cP1V3r.woff2) format('woff2');
+  unicode-range: U+0590-05FF, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/amaticsc/v16/TUZyzwprpvBS1izr_vOEBeSfU5cP1V3r.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/amaticsc/v16/TUZyzwprpvBS1izr_vOEBOSfU5cP1V3r.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/amaticsc/v16/TUZyzwprpvBS1izr_vOECuSfU5cP1Q.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+} 
