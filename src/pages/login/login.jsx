@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import app from "./base.js";
-import { AuthContext } from "./Auth.js";
-import { LoginForm } from './components'
+import app from "../../base.js";
+import { AuthContext } from "../../Auth.js";
+import { LoginForm } from '../../components'
 import './login.css'
 
 const Login = ({ history }) => {

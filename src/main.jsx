@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useProductsAPI } from './hooks'
-import { MainList } from './main-list-new'
+import { MainList } from './pages/list/main-list'
 
 export function Main() {
   const { getAllProducts } = useProductsAPI()
