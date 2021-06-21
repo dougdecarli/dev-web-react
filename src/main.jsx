@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useProductsAPI } from './hooks'
-import { MainList } from './main-list'
+import { MainList } from './main-list-new'
 
 export function Main() {
   const { getAllProducts } = useProductsAPI()
@@ -34,7 +34,7 @@ export function Main() {
 
   return (
     <main className="container">
-      <MainList list={products} updateList={updateList} />
+      <MainList list={list ? list : []} />
     </main>
   )
 }

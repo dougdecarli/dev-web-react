@@ -1,14 +1,72 @@
 import './main.css'
 import 'w3-css/4/w3pro.css'
-import { useProductsAPI } from './hooks'
+import { useProductsAPI, useSliderModal } from './hooks'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { render } from 'react-dom'
 import app from "./base";
 
 export function MainList({ list, updateList }) {
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [totalValue, setTotalValue] = useState(0);
+
+    useEffect(() => {
+        let totalValueNew = 0;
+        selectedItems.forEach(({ value }) => {
+            totalValueNew = totalValueNew + value;
+        });
+        setTotalValue(totalValueNew);
+    }, [selectedItems]);
+
+    function LoadProductList({ updateList, name, description, value, onPressPlus }) {
+        return (
+            <div id="products">
+                <b class="product-name">{name}</b>
+                <h1 class="w3-right w3-tag w3-dark-grey w3-round">R${value}</h1>
+                <p class="w3-text-grey description">{description}</p>
+                <button class="buy-button-circle" onClick={() => {
+                    const alreadySelected = selectedItems;
+                    alreadySelected.push({ name, value, description });
+                    setSelectedItems(alreadySelected);
+                }}>+</button>
+                <button class="buy-button-circle-disabled">-</button>
+            </div>
+        )
+    }
+
+    const FinishOrderConteiner = () => {
+        console.log('new items', selectedItems)
+    const { showSliderModal } = useSliderModal()
+
+    function openFinishOrderForm() {
+        showSliderModal({
+            content: (
+                <FinishOrderForm
+                    products={selectedItems}
+                    totalValue={totalValue}
+                />
+            )
+        })
+    }
+
+        return (
+            <a id="finish_order" onClick={openFinishOrderForm}>
+                <div class="finish-request-container">
+                    <div class="finish-request-content">
+                        <p class="total-value" id="total_value">Valor total: {new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }).format(totalValue)}</p>
+                    </div>
+                    <div class="finish-request-content">
+                        <p class="total-value">Finalizar pedido</p>
+                    </div>
+                </div>
+            </a>)
+    }
+
     return (
         <body>
             <Menu />
@@ -28,10 +86,28 @@ export function MainList({ list, updateList }) {
                                         name={v.name}
                                         description={v.description}
                                         value={v.value}
+                                        onPressPlus={(product) => {
+                                            const alreadySelected = selectedItems;
+                                            alreadySelected.push(product);
+                                            console.log('presplus already b', alreadySelected);
+                                            setSelectedItems(alreadySelected);
+                                        }}
                                     />
                                 )
                             })}
-                            <FinishOrderConteiner />
+                            <a id="finish_order" onClick={openFinishOrderForm}>
+                                <div class="finish-request-container">
+                                    <div class="finish-request-content">
+                                        <p class="total-value" id="total_value">Valor total: {new Intl.NumberFormat('pt-BR', {
+                                            style: 'currency',
+                                            currency: 'BRL'
+                                        }).format(totalValue)}</p>
+                                    </div>
+                                    <div class="finish-request-content">
+                                        <p class="total-value">Finalizar pedido</p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -44,46 +120,7 @@ export function MainList({ list, updateList }) {
     );
 }
 
-function LoadProductList({ updateList, name, description, value }) {
-
-    function teste() {
-
-    }
-
-    return (
-        <div id="products">
-            <b class="product-name">{name}</b>
-            <h1 class="w3-right w3-tag w3-dark-grey w3-round">R${value}</h1>
-            <p class="w3-text-grey description">{description}</p>
-            <button class="buy-button-circle" onClick={teste}>+</button>
-            <button class="buy-button-circle-disabled">-</button>
-        </div>
-    )
-}
-
-function FinishOrderConteiner() {
-
-    function openFinishOrderForm() {
-
-    }
-
-    return (
-        <a id="finish_order" onClick={openFinishOrderForm}>
-            <div class="finish-request-container">
-                <div class="finish-request-content">
-                    <p class="total-value" id="total_value">Valor total: {new Intl.NumberFormat('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL'
-                    }).format(0)}</p>
-                </div>
-                <div class="finish-request-content">
-                    <p class="total-value">Finalizar pedido</p>
-                </div>
-            </div>
-        </a>)
-}
-
-function FinishOrderForm() {
+function FinishOrderForm({ totalValue }) {
     const [request, setRequest] = useState({
 
     })
@@ -106,7 +143,89 @@ function FinishOrderForm() {
     }
 
     return (
-        <h1>Fodase</h1>
+        <div className="modal">
+            <h2>Editar transação</h2>
+
+            <h2>Total: {totalValue}</h2>
+
+            <Form
+                noValidate
+                validated={validated}
+                className="modal-form"
+                onSubmit={handleSubmit}
+            >
+                <Form.Group>
+                    <Form.Control
+                        type="text"
+                        placeholder="Valor"
+                        // value={cashMovement.valor}
+                        // onChange={handleChangeValor}
+                        required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Por favor informe o valor.
+          </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="text"
+                        placeholder="Detalhe"
+                    // value={cashMovement.detalhe}
+                    // onChange={handleChangeDetalhe}
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        type="date"
+                        defaultValue="2021-04-27"
+                        // value={cashMovement.dataPrevista}
+                        // onChange={handleChangeData}
+                        required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Por favor informe a data.
+          </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Control
+                        as="select"
+                        // value={cashMovement.tipo}
+                        // onChange={handleChangeTipo}
+                        required
+                    >
+                        <option value="" selected disabled hidden>
+                            Tipo
+            </option>
+                        <option value="despesa">Despesa</option>
+                        <option value="receita">Receita</option>
+                    </Form.Control>
+                    <Form.Control.Feedback type="invalid">
+                        Por favor selecione um tipo.
+          </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                        placeholder="Descrição"
+                        // value={cashMovement.descricao}
+                        // onChange={handleChangeDescricao}
+                        required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Por favor informe a descrição.
+          </Form.Control.Feedback>
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Enviar
+        </Button>
+            </Form>
+        </div>
     )
 }
 

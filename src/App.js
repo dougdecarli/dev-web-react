@@ -5,9 +5,13 @@ import { Main } from './main'
 import Login from "./login";
 import SignUp from "./signUp";
 import PrivateRoute from "./PrivateRoute";
+import { AppProvider } from './providers'
+import { SliderModal } from './components'
 
 const App = () => {
     return (
+        <AppProvider>
+            <SliderModal />
         <AuthProvider>
         <Router>
             <div>
@@ -17,6 +21,7 @@ const App = () => {
             </div>
         </Router>
         </AuthProvider>
+        </AppProvider>
     );
 };
 
