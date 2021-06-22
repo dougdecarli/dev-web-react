@@ -4,14 +4,10 @@ const instance = http
 
 export function useRequest(path = '') {
   function buildHeaders() {
-    const headers = {}
-
-    // const authorization = ACCESS_TOKEN_HELPER.get()
-
-    // if (authorization) {
-    //   const authorizationHeaderName = 'Authorization'
-    //   headers[authorizationHeaderName] = authorization
-    // }
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
 
     return headers
   }
@@ -23,7 +19,7 @@ export function useRequest(path = '') {
   async function callApi({ url, data = true, ...config }) {
     config.url = buildUrl(url)
     config.data = data
-    // config.headers = buildHeaders()
+    config.headers = buildHeaders()
 
     try {
       const result = await instance.request(config)

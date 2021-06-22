@@ -33,11 +33,24 @@ body,
   }
 
   .modal {
-    opacity: 50%;
+    margin: 50px 50px 50px 50px;
   }
   
   .modal-form {
     margin-top: 40px;
+  }
+
+  .form-input {
+    margin-bottom: 30px;
+    width: 50%;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .finish-button {
+    height: 45px;
+    width: 30%;
+    font-size: 25px;
   }
   
   .buy-button-circle {

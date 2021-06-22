@@ -1,6 +1,6 @@
 import '../../main.css'
 import 'w3-css/4/w3pro.css'
-import { useProductsAPI, useSliderModal } from '../../hooks'
+import { useOrderAPI, useSliderModal } from '../../hooks'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
@@ -54,7 +54,7 @@ export function MainList({ list }) {
                                                 setSelectedItems([...newItems]);
                                             }
                                         }}>-</button>
-                                        <hr/>
+                                        <hr />
                                     </div>
                                 )
                             })}
@@ -72,45 +72,73 @@ export function MainList({ list }) {
 }
 
 function FinishOrderForm({ products, totalValue }) {
+    const { postOrder } = useOrderAPI()
+    const { hideSliderModal } = useSliderModal()
     const [request, setRequest] = useState({
-
+        name: "",
+        total: totalValue,
+        tel: "",
+        address: ""
     })
     const [validated, setValidated] = useState(false)
 
+    async function postProductsOrder() {
+        const result = await postOrder(
+            request.name,
+            request.total,
+            request.tel,
+            request.address
+        )
+        console.log(result)
+    }
+
     async function handleSubmit(event) {
+        event.preventDefault()
+        event.stopPropagation()
+
+        const form = event.currentTarget
+
+        if (form.checkValidity()) {
+            await postProductsOrder()
+            hideSliderModal()
+        }
+
         setValidated(true)
     }
 
     function handleChangeName(e) {
-
+        setRequest({ ...request, name: e.target.value })
     }
 
     function handleChangeAddress(e) {
-
+        setRequest({ ...request, address: e.target.value })
     }
 
     function handleChangePhone(e) {
-
+        setRequest({ ...request, tel: e.target.value })
     }
 
     return (
         <div className="modal">
-            <h2>Editar transação</h2>
-
-            <h2>Total do pedido: {totalValue}</h2>
+            <h1>Total do pedido: {new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(totalValue)}</h1>
 
             {products.map((v, key) => {
                 return (
                     <div id="products">
-                        <b class="product-name">{v.name}</b>
-                        <h1 class="w3-right w3-tag w3-dark-grey w3-round">R${new Intl.NumberFormat('pt-BR', {
+                        <b style={{ fontSize: 28 }}>{v.name}</b>
+                        <h3 class="w3-right w3-tag w3-dark-grey w3-round">{new Intl.NumberFormat('pt-BR', {
                             style: 'currency',
                             currency: 'BRL'
-                        }).format(v.value)}</h1>
-                        <p class="w3-text-grey description">{v.description}</p>
+                        }).format(v.value)}</h3>
+                        <p style={{ fontSize: 24 }} class="w3-text-grey">{v.description}</p>
                     </div>
                 )
             })}
+
+            <h1><b>Digite seus dados para finalizar o pedido:</b></h1>
 
             <Form
                 noValidate
@@ -122,36 +150,33 @@ function FinishOrderForm({ products, totalValue }) {
                     <Form.Control
                         type="text"
                         placeholder="Nome"
+                        className="form-input"
                         onChange={handleChangeName}
                         required
                     />
-                    <Form.Control.Feedback type="invalid">
-                        Por favor informe o valor.
-          </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group >
                     <Form.Control
                         type="text"
+                        className="form-input"
                         placeholder="Endereço"
                         onChange={handleChangeAddress}
                     />
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group >
                     <Form.Control
                         type="text"
                         placeholder="Telefone"
+                        className="form-input"
                         onChange={handleChangePhone}
                         required
                     />
-                    <Form.Control.Feedback type="invalid">
-                        Por favor informe a data.
-          </Form.Control.Feedback>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Enviar
+                <Button className="finish-button" variant="primary" type="submit">
+                    finalizar
         </Button>
             </Form>
         </div>

@@ -42,5 +42,18 @@
   },
   "devDependencies": {
     "web-vitals": "^2.0.1"
-  }
+  },
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome disable-web-security",
+      "url": "http://localhost:3333",
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": [
+        "--disable-web-security",
+        "--user-data-dir=~/ChromeUserData/"
+      ]
+    }
+  ]
 }

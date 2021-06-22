@@ -5,20 +5,6 @@ import { MainList } from './pages/list/main-list'
 export function Main() {
   const { getAllProducts } = useProductsAPI()
   const [list, setList] = useState(null)
-  var products = [{
-    name: "nome",
-    description: "descricao",
-    value: 68
-  },{
-    name: "nome",
-    description: "descricao",
-    value: 68
-  },
-  {
-    name: "nome",
-    description: "descricao",
-    value: 68
-  }]
 
   async function updateList() {
     const result = await getAllProducts()
