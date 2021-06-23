@@ -74,11 +74,17 @@ export function MainList({ list }) {
 function FinishOrderForm({ products, totalValue }) {
     const { postOrder } = useOrderAPI()
     const { hideSliderModal } = useSliderModal()
+    const productsName = []
+    products.forEach(element => {
+        productsName.push(element.name)
+    });
+
     const [request, setRequest] = useState({
         name: "",
         total: totalValue,
         tel: "",
-        address: ""
+        address: "",
+        products: productsName
     })
     const [validated, setValidated] = useState(false)
 
@@ -87,7 +93,8 @@ function FinishOrderForm({ products, totalValue }) {
             request.name,
             request.total,
             request.tel,
-            request.address
+            request.address,
+            request.products
         )
         console.log(result)
     }

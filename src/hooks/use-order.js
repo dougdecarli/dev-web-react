@@ -7,10 +7,11 @@ export function useOrderAPI() {
     clientName,
     total,
     cellphone,
-    address
+    address,
+    products
   ) {
     return (
-      (await post('', {clientName, total, cellphone, address})) !== undefined
+      (await post('', {clientName, total, cellphone, address, products})) !== undefined
     )
   }
 
